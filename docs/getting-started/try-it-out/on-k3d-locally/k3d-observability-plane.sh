@@ -18,15 +18,15 @@ helm upgrade --install openchoreo-observability-plane oci://ghcr.io/openchoreo/h
 
 step "Installing OpenSearch-based logs module..."
 helm upgrade --install observability-logs-opensearch \
-  oci://ghcr.io/openchoreo/charts/observability-logs-opensearch \
+  oci://ghcr.io/openchoreo/helm-charts/observability-logs-opensearch \
   --create-namespace \
   --namespace openchoreo-observability-plane \
   --version 0.3.8 \
   --set openSearchSetup.openSearchSecretName="opensearch-admin-credentials"
 
 step "Installing OpenSearch-based traces module..."
-helm upgrade --install observability-traces-opensearch \
-  oci://ghcr.io/openchoreo/charts/observability-traces-opensearch \
+helm upgrade --install observability-tracing-opensearch \
+  oci://ghcr.io/openchoreo/helm-charts/observability-tracing-opensearch \
   --create-namespace \
   --namespace openchoreo-observability-plane \
   --version 0.3.6 \
@@ -35,14 +35,14 @@ helm upgrade --install observability-traces-opensearch \
 
 step "Installing Prometheus-based metrics module..."
 helm upgrade --install observability-metrics-prometheus \
-  oci://ghcr.io/openchoreo/charts/observability-metrics-prometheus \
+  oci://ghcr.io/openchoreo/helm-charts/observability-metrics-prometheus \
   --create-namespace \
   --namespace openchoreo-observability-plane \
   --version 0.2.4
 
 step "Enabling logs collection in the configured logs module..."
 helm upgrade observability-logs-opensearch \
-  oci://ghcr.io/openchoreo/charts/observability-logs-opensearch \
+  oci://ghcr.io/openchoreo/helm-charts/observability-logs-opensearch \
   --namespace openchoreo-observability-plane \
   --version 0.3.8 \
   --reuse-values \

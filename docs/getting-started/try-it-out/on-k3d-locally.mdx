@@ -570,19 +570,19 @@ Run the following script:
 
 #### Install the observability plane core
 
-```bash
-helm upgrade --install openchoreo-observability-plane ${versions.helmSource}/openchoreo-observability-plane \
-  --version ${versions.helmChart} \
-  --namespace openchoreo-observability-plane \
-  --values https://raw.githubusercontent.com/openchoreo/openchoreo/${versions.githubRef}/install/k3d/single-cluster/values-op.yaml \
-  --timeout 25m
-```
+<CodeBlock language="bash">
+{`helm upgrade --install openchoreo-observability-plane ${versions.helmSource}/openchoreo-observability-plane \\
+  --version ${versions.helmChart} \\
+  --namespace openchoreo-observability-plane \\
+  --values https://raw.githubusercontent.com/openchoreo/openchoreo/${versions.githubRef}/install/k3d/single-cluster/values-op.yaml \\
+  --timeout 25m`}
+</CodeBlock>
 
 #### Install the OpenSearch-based logs module
 
 ```bash
 helm upgrade --install observability-logs-opensearch \
-  oci://ghcr.io/openchoreo/charts/observability-logs-opensearch \
+  oci://ghcr.io/openchoreo/helm-charts/observability-logs-opensearch \
   --create-namespace \
   --namespace openchoreo-observability-plane \
   --version 0.3.8 \
@@ -592,8 +592,8 @@ helm upgrade --install observability-logs-opensearch \
 #### Install the OpenSearch-based traces module
 
 ```bash
-helm upgrade --install observability-traces-opensearch \
-  oci://ghcr.io/openchoreo/charts/observability-traces-opensearch \
+helm upgrade --install observability-tracing-opensearch \
+  oci://ghcr.io/openchoreo/helm-charts/observability-tracing-opensearch \
   --create-namespace \
   --namespace openchoreo-observability-plane \
   --version 0.3.6 \
@@ -605,7 +605,7 @@ helm upgrade --install observability-traces-opensearch \
 
 ```bash
 helm upgrade --install observability-metrics-prometheus \
-  oci://ghcr.io/openchoreo/charts/observability-metrics-prometheus \
+  oci://ghcr.io/openchoreo/helm-charts/observability-metrics-prometheus \
   --create-namespace \
   --namespace openchoreo-observability-plane \
   --version 0.2.4
@@ -615,7 +615,7 @@ helm upgrade --install observability-metrics-prometheus \
 
 ```bash
 helm upgrade observability-logs-opensearch \
-  oci://ghcr.io/openchoreo/charts/observability-logs-opensearch \
+  oci://ghcr.io/openchoreo/helm-charts/observability-logs-opensearch \
   --namespace openchoreo-observability-plane \
   --version 0.3.8 \
   --reuse-values \
